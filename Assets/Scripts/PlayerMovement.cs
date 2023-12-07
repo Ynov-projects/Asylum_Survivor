@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
         // Avancer / Reculer
         if (Mathf.Abs(verticalMovement) > 0.3f)
         {
-            Debug.Log(Input.GetKey(KeyCode.LeftShift));
             int running = Input.GetKey(KeyCode.LeftShift) ? 2 : 1;
             tempSpeed = transform.forward * verticalMovement * running * _speed;
         }
