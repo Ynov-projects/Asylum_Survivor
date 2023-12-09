@@ -10,12 +10,12 @@ public class DoorOpening : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        someoneHere = true;
+        if(other.gameObject.tag == "Player") someoneHere = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        someoneHere = false;
+        if (other.gameObject.tag == "Player") someoneHere = false;
     }
 
     private void Update()
