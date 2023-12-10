@@ -12,7 +12,6 @@ public class SwitchLights : MonoBehaviour
     {
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Light");
         foreach(GameObject go in gameObjects) lights.Add(go.GetComponent<Light>());
-        Debug.Log(lights.Count);
     }
 
     private void Update()
