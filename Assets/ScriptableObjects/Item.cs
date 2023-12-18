@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/items")]
-public class Items : ScriptableObject
+public class Item : ScriptableObject
 {
     public int Id;
     public string Name;
@@ -9,4 +9,5 @@ public class Items : ScriptableObject
     public Sprite icon;
 
     public int Quantity = 0;
+    public int usedQuantity = 0;
 }

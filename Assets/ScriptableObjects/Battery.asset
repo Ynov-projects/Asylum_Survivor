@@ -16,4 +16,5 @@ MonoBehaviour:
   Name: Battery
   Prefab: {fileID: 1123693314251274, guid: b741fa043c0908c499bb320804aa111b, type: 3}
   icon: {fileID: 0}
-  Quantity: 1
+  Quantity: 198
+  usedQuantity: 1
