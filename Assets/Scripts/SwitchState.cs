@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class SwitchState : MonoBehaviour
 {
     private bool someoneHere;
+    private bool isOpened;
+
     [SerializeField] private Animator animator;
     [SerializeField] private bool isLightSwitch;
 
@@ -20,11 +23,24 @@ public class SwitchState : MonoBehaviour
     {
         if (someoneHere)
         {
-            if(Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown(KeyCode.E) && !isOpened)
             {
-                animator.SetBool("opening", !animator.GetBool("opening"));
-                if (isLightSwitch) SwitchLights.Instance.Switch();
+                StartCoroutine(SwitchActivated());
             }
         }
+    }
+
+    IEnumerator SwitchActivated()
+    {
+        SwitchingState();
+        yield return new WaitForSeconds(30);
+        SwitchingState();
+    }
+
+    private void SwitchingState()
+    {
+        isOpened = !isOpened;
+        animator.SetBool("opening", !animator.GetBool("opening"));
+        if (isLightSwitch) SwitchLights.Instance.Switch();
     }
 }

@@ -8,14 +8,13 @@ public class ItemScript : MonoBehaviour
     {
         Destroy(gameObject);
         item.Quantity++;
-        GameManager.Instance.UpdateBattery(item.Quantity);
+        GameManager.Instance.UpdateBattery();
     }
     
     public void looseBattery()
     {
         item.Quantity--;
-        Debug.Log(item.Quantity);
         GameManager.Instance.isLightOn = false;
-        GameManager.Instance.UpdateBattery(item.Quantity);
+        GameManager.Instance.UpdateBattery();
     }
 }

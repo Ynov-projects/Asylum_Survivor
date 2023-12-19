@@ -2,6 +2,7 @@ using System.Collections;
 using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,9 +23,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            isLightOn = !isLightOn && items[0].Quantity > 0;
+            isLightOn = !isLightOn && items[1].Quantity > 0;
         }
         if (isLightOn)
         {
@@ -44,16 +45,13 @@ public class GameManager : MonoBehaviour
         foreach (Item item in items) item.Quantity = 0;
     }
 
-    public void UpdateBattery(int nbBattery)
+    public void UpdateBattery()
     {
-        Debug.Log(nbBattery > 0);
-        batteryAnimator.SetBool("hasBattery", nbBattery > 0);
+        batteryAnimator.SetBool("hasBattery", items[1].Quantity > 0);
     }
 
     public void Death()
     {
 
     }
-
-
 }
