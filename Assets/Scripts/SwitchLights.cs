@@ -5,6 +5,8 @@ public class SwitchLights : MonoBehaviour
 {
     private List<Light> lights = new List<Light>();
 
+    public bool isLightOn;
+
     public static SwitchLights Instance;
 
     private void Awake()
@@ -21,6 +23,7 @@ public class SwitchLights : MonoBehaviour
 
     public void Switch()
     {
+        isLightOn = !isLightOn;
         foreach (Light light in lights)
         {
             light.enabled = !light.enabled;

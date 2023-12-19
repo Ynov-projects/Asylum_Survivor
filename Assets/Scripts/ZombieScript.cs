@@ -25,12 +25,20 @@ public class ZombieScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Player") tooClose = true;
+        if (other.transform.tag == "Player")
+        {
+            tooClose = true;
+            PlayerHealth.Instance.ZombieClose = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag == "Player") tooClose = false;
+        if (other.transform.tag == "Player")
+        {
+            tooClose = false;
+            PlayerHealth.Instance.ZombieClose = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
