@@ -20,29 +20,17 @@ public class ZombieScript : MonoBehaviour
     {
         // Permet d'avoir un mob qui retourne au point de départ si le personnage sort de sa zone
         GetComponent<NavMeshAgent>().SetDestination(tooClose ? _playerTransform.position : initialPos);
+        Debug.Log(tooClose);
         _animator.SetFloat("walking", tooClose ? rb.velocity.normalized.magnitude : 0);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.tag == "Player")
-        {
-            tooClose = true;
-            PlayerHealth.Instance.ZombieClose = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.tag == "Player")
-        {
-            tooClose = false;
-            PlayerHealth.Instance.ZombieClose = false;
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         GameManager.Instance.Death();
+    }
+
+    public void changeTooClose(bool closeOrNot)
+    {
+        tooClose = closeOrNot;
     }
 }
