@@ -26,6 +26,12 @@ public class ItemScript : MonoBehaviour
         GameManager.Instance.UpdateBattery();
     }
 
+    public void collectKey()
+    {
+        Destroy(gameObject);
+        item.Quantity++;
+    }
+
     public void collectMedicine()
     {
         Destroy(gameObject);

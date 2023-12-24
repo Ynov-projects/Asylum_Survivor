@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class MouseInteraction : MonoBehaviour
 {
+    public static MouseInteraction Instance;
+
+    private void Awake()
+    {
+        if(Instance != null) Destroy(gameObject); 
+        Instance = this;
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

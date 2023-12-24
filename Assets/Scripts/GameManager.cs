@@ -1,20 +1,19 @@
-using System.Collections;
-using System.Linq.Expressions;
-using Unity.VisualScripting;
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using static UnityEditor.Progress;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public Item[] items;
+    [SerializeField] private Item[] items;
 
     public bool isLightOn;
 
     [SerializeField] private Light flashLight;
+    [SerializeField] private Animator batteryAnimator;
 
-    public Animator batteryAnimator;
+    [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private TextMeshProUGUI endTitle;
 
     private void Awake()
     {
@@ -53,6 +52,20 @@ public class GameManager : MonoBehaviour
 
     public void Death()
     {
+        endTitle.text = "YOU LOSE!";
+        displayPanel();
+    }
 
+    private void displayPanel()
+    {
+        Time.timeScale = 0;
+        MouseInteraction.Instance.enabled = false;
+        endGamePanel.SetActive(true);
+    }
+
+    public void Win()
+    {
+        endTitle.text = "YOU WIN!";
+        displayPanel();
     }
 }

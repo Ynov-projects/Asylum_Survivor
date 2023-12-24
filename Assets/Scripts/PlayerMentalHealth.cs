@@ -67,15 +67,12 @@ public class PlayerMentalHealth : MonoBehaviour
         _stressBackground.localScale = CurrentScale;
 
         _stressImage.color = _stressGradient.Evaluate(CurrentScale.x);
+
+        if (life <= 0) GameManager.Instance.Death();
     }
 
     public void takeMedicine()
     {
         life += life + 20 > maxLife ? maxLife : life + 20;
-    }
-
-    public void Death()
-    {
-        GameManager.Instance.Death();
     }
 }
