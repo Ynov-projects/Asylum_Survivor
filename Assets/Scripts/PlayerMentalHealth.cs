@@ -29,6 +29,11 @@ public class PlayerMentalHealth : MonoBehaviour
     void Start()
     {
         life = maxLife;
+        UpdateMentalHealth();
+    }
+
+    public void UpdateMentalHealth()
+    {
         StartCoroutine(UpdateStress());
     }
 
@@ -36,7 +41,6 @@ public class PlayerMentalHealth : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5);
 
             // If no flashlight and no global light = 1 / else = 0
             int light = (!GameManager.Instance.isLightOn ? 1 : 0) * (!SwitchLights.Instance.isLightOn ? 1 : 0);
@@ -49,6 +53,7 @@ public class PlayerMentalHealth : MonoBehaviour
 
             int amount = noLight + zombieHere;
             UpdateStressAmount(amount);
+            yield return new WaitForSeconds(5);
         }
     }
 
@@ -62,6 +67,11 @@ public class PlayerMentalHealth : MonoBehaviour
         _stressBackground.localScale = CurrentScale;
 
         _stressImage.color = _stressGradient.Evaluate(CurrentScale.x);
+    }
+
+    public void takeMedicine()
+    {
+        life += life + 20 > maxLife ? maxLife : life + 20;
     }
 
     public void Death()

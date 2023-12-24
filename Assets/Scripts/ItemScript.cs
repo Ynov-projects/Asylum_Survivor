@@ -1,14 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemScript : MonoBehaviour
 {
     [SerializeField] private Item item;
 
+    [SerializeField] private UnityEvent functionOnClick;
+
     public void OnClick()
     {
-        Destroy(gameObject);
-        item.Quantity++;
-        GameManager.Instance.UpdateBattery();
+        functionOnClick.Invoke();
     }
     
     public void looseBattery()
@@ -16,5 +17,19 @@ public class ItemScript : MonoBehaviour
         item.Quantity--;
         GameManager.Instance.isLightOn = false;
         GameManager.Instance.UpdateBattery();
+    }
+
+    public void collectBattery()
+    {
+        Destroy(gameObject);
+        item.Quantity++;
+        GameManager.Instance.UpdateBattery();
+    }
+
+    public void collectMedicine()
+    {
+        Destroy(gameObject);
+        PlayerMentalHealth.Instance.takeMedicine();
+        PlayerMentalHealth.Instance.UpdateMentalHealth();
     }
 }
