@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject endGamePanel;
     [SerializeField] private TextMeshProUGUI endTitle;
 
+    [SerializeField] private GameObject[] batteries;
+    [SerializeField] private GameObject[] pills;
+    [SerializeField] private GameObject[] keys;
+
     private void Awake()
     {
         if (Instance != null) Destroy(gameObject);
@@ -43,6 +47,22 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         foreach (Item item in items) item.Quantity = 0;
+        activateElements(6, batteries);
+        activateElements(2, pills);
+        activateElements(1, keys);
+    }
+
+    private void activateElements(int numberOfElements, GameObject[] items)
+    {
+        for (int i = 0; i < numberOfElements; i++)
+        {
+            int rand = Random.Range(0, items.Length);
+            while (items[rand].activeSelf == true)
+            {
+                rand = Random.Range(0, items.Length);
+            }
+            items[rand].SetActive(true);
+        }
     }
 
     public void UpdateBattery()

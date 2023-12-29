@@ -23,9 +23,10 @@ public class SwitchState : MonoBehaviour
     {
         if (someoneHere)
         {
-            if(Input.GetKeyDown(KeyCode.E) && !isOpened)
+            if(Input.GetKeyDown(KeyCode.E) && (isLightSwitch ? !isOpened : true))
             {
-                StartCoroutine(SwitchActivated());
+                if (isLightSwitch) StartCoroutine(SwitchActivated());
+                else SwitchingState();
             }
         }
     }

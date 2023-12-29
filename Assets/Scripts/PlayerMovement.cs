@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         // Rotation
         if (Mathf.Abs(horizontalMovement) > 0.3f)
         {
-            transform.Rotate(new Vector3(0, horizontalMovement * _rotationSpeed * Time.deltaTime, 0));
+            tempSpeed = transform.right * horizontalMovement * 2 * _speed;
         }
         // Avancer / Reculer
         if (Mathf.Abs(verticalMovement) > 0.3f)
