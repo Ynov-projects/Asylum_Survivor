@@ -8,7 +8,7 @@ public class endGamePanel : MonoBehaviour
     public void onRetryClick()
     {
         gameObject.SetActive(false);
-        MouseInteraction.Instance.enabled = true;
+        GetCollectible.Instance.enabled = true;
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

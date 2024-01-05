@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
     private void displayPanel()
     {
         Time.timeScale = 0;
-        MouseInteraction.Instance.enabled = false;
+        GetCollectible.Instance.enabled = false;
         endGamePanel.SetActive(true);
     }
 

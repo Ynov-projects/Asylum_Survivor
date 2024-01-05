@@ -21,7 +21,7 @@ public class EscapeDoor : MonoBehaviour
     {
         if (someoneHere)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 if (key.Quantity == 1) GameManager.Instance.Win();
             }
