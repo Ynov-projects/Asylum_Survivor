@@ -1,6 +1,6 @@
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] pills;
     [SerializeField] private GameObject[] keys;
 
+    [SerializeField] private AudioSource music;
 
     private void Awake()
     {
@@ -81,11 +82,22 @@ public class GameManager : MonoBehaviour
 
     private void displayPanel()
     {
-        Cursor.visible = true;
+        music.Stop();
         Time.timeScale = 0;
+        Cursor.visible = true;
         GetCollectible.Instance.enabled = false;
         CameraFollow.Instance.enabled = false;
         endGamePanel.SetActive(true);
+    }
+
+    public void replay()
+    {
+        music.Play();
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        GetCollectible.Instance.enabled = true;
+        CameraFollow.Instance.enabled = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Win()

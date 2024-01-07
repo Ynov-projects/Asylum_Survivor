@@ -1,6 +1,4 @@
 using System.Collections;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -75,8 +73,8 @@ public class PlayerMentalHealth : MonoBehaviour
         _stressBackground.localScale = CurrentScale;
 
         _stressImage.color = _stressGradient.Evaluate(CurrentScale.x);
-        aberration.intensity.value = (float)(maxLife - life) / (float) maxLife;
-        distortion.intensity.value = -((float)(maxLife - life) / (float) maxLife)/2;
+        aberration.intensity.value = (float)(maxLife - life) / (float)maxLife;
+        distortion.intensity.value = -((float)(maxLife - life) / (float)maxLife) / 2;
 
         if (life <= 0) GameManager.Instance.Death();
     }
