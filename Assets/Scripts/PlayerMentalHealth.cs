@@ -50,7 +50,6 @@ public class PlayerMentalHealth : MonoBehaviour
     {
         while (true)
         {
-
             // If no flashlight and no global light = 1 / else = 0
             int light = (!GameManager.Instance.isLightOn ? 1 : 0) * (!SwitchLights.Instance.isLightOn ? 1 : 0);
 

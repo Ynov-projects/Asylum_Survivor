@@ -9,7 +9,9 @@ public class endGamePanel : MonoBehaviour
     {
         gameObject.SetActive(false);
         GetCollectible.Instance.enabled = true;
+        CameraFollow.Instance.enabled = false;
         Time.timeScale = 1;
+        Cursor.visible = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

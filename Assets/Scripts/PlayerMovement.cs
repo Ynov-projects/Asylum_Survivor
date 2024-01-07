@@ -20,18 +20,24 @@ public class PlayerMovement : MonoBehaviour
         Vector3 tempSpeed = CurrentSpeed;
 
         // Rotation
-        if (Mathf.Abs(horizontalMovement) > 0.3f)
+        if (Mathf.Abs(horizontalMovement) > 0.3f || Mathf.Abs(verticalMovement) > 0.3f)
         {
-            tempSpeed = transform.right * horizontalMovement * 2 * _speed;
+            float running = Input.GetKey(KeyCode.LeftShift) ? 1.75f : 1f;
+            tempSpeed = transform.forward * verticalMovement * running * _speed + transform.right * horizontalMovement * _speed;
         }
         // Avancer / Reculer
-        if (Mathf.Abs(verticalMovement) > 0.3f)
+        if (Mathf.Abs(verticalMovement) > 0.01f)
         {
-            int running = Input.GetKey(KeyCode.LeftShift) ? 2 : 1;
-            tempSpeed = transform.forward * verticalMovement * running * _speed;
         }
+
+        //float xMove = Input.GetAxisRaw("Horizontal"); // d key changes value to 1, a key changes value to -1
+        //float zMove = Input.GetAxisRaw("Vertical"); // w key changes value to 1, s key changes value to -1
+
+        //_rb.velocity = new Vector3(xMove, _rb.velocity.y, zMove) * _speed; // Creates velocity in direction of value equal to keypress (WASD). rb.velocity.y deals with falling + jumping by setting velocity to y. 
+
+
         tempSpeed.y = CurrentSpeed.y;
-        _rb.velocity = Vector3.Lerp(_rb.velocity, tempSpeed, Time.deltaTime);
+        _rb.velocity = tempSpeed;
 
         animator.SetFloat("Speed", _rb.velocity.magnitude);
 

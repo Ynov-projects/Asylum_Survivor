@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator batteryAnimator;
 
     [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private GameObject keyPanel;
     [SerializeField] private TextMeshProUGUI endTitle;
 
     [SerializeField] private GameObject[] batteries;
     [SerializeField] private GameObject[] pills;
     [SerializeField] private GameObject[] keys;
+
 
     private void Awake()
     {
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         foreach (Item item in items) item.Quantity = 0;
         activateElements(6, batteries);
         activateElements(2, pills);
@@ -78,8 +81,10 @@ public class GameManager : MonoBehaviour
 
     private void displayPanel()
     {
+        Cursor.visible = true;
         Time.timeScale = 0;
         GetCollectible.Instance.enabled = false;
+        CameraFollow.Instance.enabled = false;
         endGamePanel.SetActive(true);
     }
 
@@ -87,5 +92,10 @@ public class GameManager : MonoBehaviour
     {
         endTitle.text = "YOU WIN!";
         displayPanel();
+    }
+
+    public void getKey()
+    {
+        keyPanel.SetActive(true);
     }
 }

@@ -37,7 +37,7 @@ public class CameraHeadBob : MonoBehaviour
 
     private void CheckMotion()
     {
-        float speed = new Vector3(_controller.velocity.x, 0, _controller.velocity.z).magnitude;
+        float speed = new Vector3(_controller.velocity.x * 1.5f, 0, _controller.velocity.z * 1.5f).magnitude;
         if (speed < _toggleSpeed)
             return;
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ public class SwitchState : MonoBehaviour
     {
         if (someoneHere)
         {
-            if(Input.GetKeyDown(KeyCode.A) && (isLightSwitch ? !isOpened : true))
+            if (Input.GetKeyDown(KeyCode.Q) && (isLightSwitch ? !isOpened : true))
             {
                 if (isLightSwitch) StartCoroutine(SwitchActivated());
                 else SwitchingState();
