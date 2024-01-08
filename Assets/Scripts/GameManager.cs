@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = false;
         foreach (Item item in items) item.Quantity = 0;
-        activateElements(6, batteries);
+        activateElements(4, batteries);
         activateElements(2, pills);
         activateElements(1, keys);
     }
