@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] pills;
     [SerializeField] private GameObject[] keys;
 
-    [SerializeField] private AudioSource music;
+    [SerializeField] private AudioMixerSnapshot ingame;
+    [SerializeField] private AudioMixerSnapshot menu;
 
     private void Awake()
     {
@@ -82,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     private void displayPanel()
     {
-        music.Stop();
+        menu.TransitionTo(0);
         Time.timeScale = 0;
         Cursor.visible = true;
         GetCollectible.Instance.enabled = false;
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     public void replay()
     {
-        music.Play();
+        ingame.TransitionTo(0);
         Time.timeScale = 1;
         Cursor.visible = false;
         GetCollectible.Instance.enabled = true;
