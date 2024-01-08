@@ -7,6 +7,9 @@ public class SwitchState : MonoBehaviour
     private bool someoneHere;
     private bool isOpened;
 
+    [SerializeField] private bool keyIsNeeded;
+    [SerializeField] private Item key;
+
     [SerializeField] private Animator animator;
     [SerializeField] private bool isLightSwitch;
 
@@ -24,10 +27,12 @@ public class SwitchState : MonoBehaviour
     {
         if (someoneHere)
         {
-            if (Input.GetKeyDown(KeyCode.Q) && (isLightSwitch ? !isOpened : true))
+            if (Input.GetKeyDown(KeyCode.Q) && (isLightSwitch && !isOpened || !isLightSwitch) && (keyIsNeeded && key.Quantity > 0 && !isOpened || !keyIsNeeded))
             {
                 if (isLightSwitch) StartCoroutine(SwitchActivated());
                 else SwitchingState();
+                if (keyIsNeeded) key.Quantity--;
+                UIManager.Instance.UpdateKeys();
             }
         }
     }

@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator batteryAnimator;
 
     [SerializeField] private GameObject endGamePanel;
-    [SerializeField] private GameObject keyPanel;
     [SerializeField] private TextMeshProUGUI endTitle;
 
     [SerializeField] private GameObject[] batteries;
@@ -39,7 +38,6 @@ public class GameManager : MonoBehaviour
         if (isLightOn)
         {
             batteryAnimator.speed = 1;
-            batteryAnimator.SetTrigger("switchOn");
             flashLight.intensity = 5;
         }
         else
@@ -53,9 +51,9 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = false;
         foreach (Item item in items) item.Quantity = 0;
-        activateElements(4, batteries);
-        activateElements(2, pills);
-        activateElements(1, keys);
+        activateElements(6, batteries);
+        activateElements(3, pills);
+        activateElements(3, keys);
     }
 
     private void activateElements(int numberOfElements, GameObject[] items)
@@ -69,11 +67,6 @@ public class GameManager : MonoBehaviour
             }
             items[rand].SetActive(true);
         }
-    }
-
-    public void UpdateBattery()
-    {
-        batteryAnimator.SetBool("hasBattery", items[1].Quantity > 0);
     }
 
     public void Death()
@@ -106,10 +99,5 @@ public class GameManager : MonoBehaviour
     {
         endTitle.text = "YOU WIN!";
         displayPanel();
-    }
-
-    public void getKey()
-    {
-        keyPanel.SetActive(true);
     }
 }

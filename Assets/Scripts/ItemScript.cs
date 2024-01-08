@@ -15,21 +15,21 @@ public class ItemScript : MonoBehaviour
     {
         item.Quantity--;
         GameManager.Instance.isLightOn = false;
-        GameManager.Instance.UpdateBattery();
+        UIManager.Instance.UpdateBattery();
     }
 
     public void collectBattery()
     {
         Destroy(gameObject);
         item.Quantity++;
-        GameManager.Instance.UpdateBattery();
+        UIManager.Instance.UpdateBattery();
     }
 
     public void collectKey()
     {
         Destroy(gameObject);
-        GameManager.Instance.getKey();
         item.Quantity++;
+        UIManager.Instance.UpdateKeys();
     }
 
     public void collectMedicine()
