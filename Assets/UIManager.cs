@@ -7,6 +7,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+    private int code;
+    [SerializeField] private TextMeshProUGUI[] numberPanels;
+
     [SerializeField] private TextMeshProUGUI keyText;
     [SerializeField] private TextMeshProUGUI batteryText;
 
@@ -18,6 +21,16 @@ public class UIManager : MonoBehaviour
     {
         if (Instance != null) Destroy(gameObject);
         Instance = this;
+    }
+
+    private void Start()
+    {
+        code = Random.Range(0, 999);
+        int emplacement = Random.Range(0, 2);
+        int hundreds = code / 100;
+        numberPanels[3 * emplacement].text = hundreds.ToString();
+        numberPanels[3 * emplacement + 1].text = ((code - hundreds * 100) / 10).ToString();
+        numberPanels[3 * emplacement + 2].text = (code % 10).ToString();
     }
 
     public void UpdateBattery()
