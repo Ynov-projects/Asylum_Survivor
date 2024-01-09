@@ -43,4 +43,9 @@ public class UIManager : MonoBehaviour
     {
         keyText.text = key.Quantity + "x";
     }
+
+    public int GetCode()
+    {
+        return code;
+    }
 }

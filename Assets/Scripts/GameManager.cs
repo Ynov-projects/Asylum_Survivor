@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         if (isLightOn)
         {
             batteryAnimator.speed = 1;
+            batteryAnimator.SetTrigger("switchOn");
             flashLight.intensity = 5;
         }
         else
