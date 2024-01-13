@@ -88,6 +88,7 @@ public class PlayerMentalHealth : MonoBehaviour
 
     public void takeMedicine()
     {
-        life += life + 20 > maxLife ? maxLife : life + 20;
+        int difficulty = PlayerPrefs.GetInt("difficulty") > 3 ? 2 : 1;
+        life += life + 20 / difficulty > maxLife ? maxLife : life + 20 / difficulty;
     }
 }

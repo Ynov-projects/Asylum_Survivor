@@ -8,7 +8,7 @@ public static class Traductions
 
         switch (traduction)
         {
-#region "settings"
+            #region "settings"
             case "language":
                 return fr ? "langage" : "language";
             case "language1":
@@ -31,7 +31,32 @@ public static class Traductions
                 return fr ? "quitter" : "quit";
             case "options":
                 return "options";
-#endregion
+            #endregion
+            #region "ingame"
+            case "lightSwitchInfo":
+                return fr ? "Pressez A pour activer" : "Press A to interact";
+            case "batteryInfo":
+                return fr ?
+                    "Pressez E pour prendre la batterie. Pressez F pour activer/désactiver la torche" :
+                    "Press E to grab batteries. Press F to start/stop using your flashlight";
+            case "beginningInfo":
+                return fr ?
+                    "Vous perdez la tête. Ayez toujours une lumière allumée et restez loin des patients fous. Trouvez le code pour sortir par la porte principale. Bonne chance..." :
+                    "You are losing your mind. Make sure to always have a light on and stay away from patients, they're also crazy. Find the code to open the main door. Good luck...";
+            case "doorInfo":
+                return fr ? "Pressez A pour interagir" : "Press A to interact";
+            case "pillsInfo":
+                return fr ?
+                    "Si vous avez des pilules, pressez P pour récupérer de la santé mentale" :
+                    "If you get pills, press P to use it, and regain some mental health";
+            case "runInfo":
+                return fr ? "Courez au plus vite avec MAJ GAUCHE" : "Run as fast as you can with LEFT SHIFT";
+            case "mainDoorInfo":
+                return fr ?
+                    "Trouvez le code pour partir. Pressez A pour essayer" :
+                    "Find the code to escape this place. Press A to test it";
+
+                #endregion
         }
         return "Tu t'es trompé de traduction";
     }

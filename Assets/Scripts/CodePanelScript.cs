@@ -28,7 +28,7 @@ public class CodePanelScript : MonoBehaviour
 
     public void OnSubmit()
     {
-        if (numbers[0].text + numbers[1].text + numbers[2].text == UIManager.Instance.GetCode().ToString())
+        if (int.Parse(numbers[0].text + numbers[1].text + numbers[2].text) == UIManager.Instance.GetCode())
         {
             gameObject.SetActive(false);
             GameManager.Instance.Win();

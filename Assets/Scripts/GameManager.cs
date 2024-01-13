@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioMixerSnapshot ingame;
     [SerializeField] private AudioMixerSnapshot menu;
 
+    [SerializeField] private TextMeshProUGUI[] infos;
+
     private void Awake()
     {
         if (Instance != null) Destroy(gameObject);
@@ -60,13 +62,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        int difficulty = PlayerPrefs.GetInt("difficulty");
+        RenderSettings.ambientLight = difficulty > 3 ? new Color(0.4f, 0.4f, 0.4f) : new Color(0.08f, 0.04f, 0.04f);
         Cursor.visible = false;
         foreach (Item item in items) item.Quantity = 0;
-        activateElements(3, batteries);
-        activateElements(2, batteriesUp);
-        activateElements(1, batteriesDown);
-        activateElements(3, pills);
+        activateElements(4 - difficulty, batteries);
+        activateElements(3 - difficulty, batteriesUp);
+        activateElements(2 - difficulty, batteriesDown);
+        activateElements(4 - difficulty, pills);
         activateElements(4, keys);
+        foreach (TextMeshProUGUI info in infos) info.text = Traductions.getTraduction(info.name);
     }
 
     private void activateElements(int numberOfElements, GameObject[] items)

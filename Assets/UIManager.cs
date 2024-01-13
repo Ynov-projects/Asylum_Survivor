@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    private int code;
+    public int code;
     [SerializeField] private TextMeshProUGUI[] numberPanels;
 
     [SerializeField] private TextMeshProUGUI keyText;
