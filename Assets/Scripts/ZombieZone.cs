@@ -10,7 +10,6 @@ public class ZombieZone : MonoBehaviour
         {
             clip.Play();
             transform.GetChild(0).GetComponent<ZombieScript>().changeTooClose(true);
-            PlayerMentalHealth.Instance.ZombieClose++;
         }
     }
 
@@ -20,7 +19,6 @@ public class ZombieZone : MonoBehaviour
         {
             clip.Stop();
             transform.GetChild(0).GetComponent<ZombieScript>().changeTooClose(false);
-            PlayerMentalHealth.Instance.ZombieClose--;
         }
     }
 }

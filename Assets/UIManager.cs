@@ -12,10 +12,12 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI keyText;
     [SerializeField] private TextMeshProUGUI batteryText;
+    [SerializeField] private TextMeshProUGUI pillsText;
 
     [SerializeField] private Animator batteryAnimator;
     [SerializeField] private Item key;
     [SerializeField] private Item battery;
+    [SerializeField] private Item pills;
 
     private void Awake()
     {
@@ -26,7 +28,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         code = Random.Range(0, 999);
-        int emplacement = Random.Range(0, 2);
+        int emplacement = Random.Range(0, 3);
         int hundreds = code / 100;
         numberPanels[3 * emplacement].text = hundreds.ToString();
         numberPanels[3 * emplacement + 1].text = ((code - hundreds * 100) / 10).ToString();
@@ -42,6 +44,11 @@ public class UIManager : MonoBehaviour
     public void UpdateKeys()
     {
         keyText.text = key.Quantity + "x";
+    }
+
+    public void UpdatePills()
+    {
+        pillsText.text = pills.Quantity + "x";
     }
 
     public int GetCode()

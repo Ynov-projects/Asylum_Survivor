@@ -35,7 +35,7 @@ public class ItemScript : MonoBehaviour
     public void collectMedicine()
     {
         Destroy(gameObject);
-        PlayerMentalHealth.Instance.takeMedicine();
-        PlayerMentalHealth.Instance.UpdateMentalHealth();
+        item.Quantity++;
+        UIManager.Instance.UpdatePills();
     }
 }

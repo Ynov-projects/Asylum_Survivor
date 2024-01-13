@@ -9,6 +9,7 @@ public class SwitchState : MonoBehaviour
 
     [SerializeField] private bool keyIsNeeded;
     [SerializeField] private Item key;
+    [SerializeField] private GameObject keyWarning;
 
     [SerializeField] private Animator animator;
     [SerializeField] private bool isLightSwitch;
@@ -31,7 +32,12 @@ public class SwitchState : MonoBehaviour
             {
                 if (isLightSwitch) StartCoroutine(SwitchActivated());
                 else SwitchingState();
-                if (keyIsNeeded) key.Quantity--;
+                if (keyIsNeeded)
+                {
+                    key.Quantity--;
+                    keyIsNeeded = false;
+                    keyWarning.SetActive(false);
+                }
                 UIManager.Instance.UpdateKeys();
             }
         }

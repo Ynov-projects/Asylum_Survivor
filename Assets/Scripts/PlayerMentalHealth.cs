@@ -9,10 +9,7 @@ public class PlayerMentalHealth : MonoBehaviour
     [SerializeField] private int life;
     [SerializeField] private int maxLife;
 
-    public int ZombieClose;
-    
     private int noLight;
-    private int zombieHere;
 
     [SerializeField] private Volume volume;
 
@@ -22,6 +19,8 @@ public class PlayerMentalHealth : MonoBehaviour
     [SerializeField] private Image _stressImage;
     [SerializeField] private RectTransform _stressBackground;
     [SerializeField] private Gradient _stressGradient;
+
+    private int timer;
 
     public static PlayerMentalHealth Instance;
 
@@ -48,19 +47,27 @@ public class PlayerMentalHealth : MonoBehaviour
     {
         while (true)
         {
-            // If no flashlight and no global light = 1 / else = 0
-            int light = (!GameManager.Instance.isLightOn ? 1 : 0) * (!SwitchLights.Instance.isLightOn ? 1 : 0);
+            if (timer > 2)
+            {
+                // If no flashlight and no global light = 1 / else = 0
+                int light = (!GameManager.Instance.isLightOn ? 1 : 0) * (!SwitchLights.Instance.isLightOn ? 1 : 0);
 
-            // If more than one zombie = 1 / else = 0
-            int zombie = ZombieClose > 0 ? 1 : 0;
+                noLight = noLight * light + light;
 
-            noLight = noLight * light + light;
-            zombieHere = zombieHere * zombie + zombie;
-
-            int amount = noLight + zombieHere;
-            UpdateStressAmount(amount);
-            yield return new WaitForSeconds(5);
+                int amount = noLight;
+                UpdateStressAmount(amount);
+            }
+            else
+            {
+                timer += 1;
+            }
+            yield return new WaitForSeconds(3);
         }
+    }
+
+    public float getStress()
+    {
+        return (float)life / (float)maxLife;
     }
 
     private void UpdateStressAmount(int amount)

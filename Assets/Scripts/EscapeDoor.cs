@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EscapeDoor : MonoBehaviour
 {
     private bool someoneHere;
-    [SerializeField] private Item key;
+
+    [SerializeField] private GameObject codePanel;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,7 +22,8 @@ public class EscapeDoor : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (key.Quantity == 1) GameManager.Instance.Win();
+                Cursor.visible = true;
+                codePanel.SetActive(true);
             }
         }
     }

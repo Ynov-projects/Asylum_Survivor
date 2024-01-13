@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endTitle;
 
     [SerializeField] private GameObject[] batteries;
+    [SerializeField] private GameObject[] batteriesUp;
+    [SerializeField] private GameObject[] batteriesDown;
+
     [SerializeField] private GameObject[] pills;
     [SerializeField] private GameObject[] keys;
 
@@ -35,6 +38,13 @@ public class GameManager : MonoBehaviour
         {
             isLightOn = !isLightOn && items[1].Quantity > 0;
         }
+        if(Input.GetKeyDown(KeyCode.P) && items[2].Quantity > 0) 
+        {
+            items[2].Quantity--;
+            PlayerMentalHealth.Instance.takeMedicine();
+            PlayerMentalHealth.Instance.UpdateMentalHealth();
+            UIManager.Instance.UpdatePills();
+        }
         if (isLightOn)
         {
             batteryAnimator.speed = 1;
@@ -52,9 +62,11 @@ public class GameManager : MonoBehaviour
     {
         Cursor.visible = false;
         foreach (Item item in items) item.Quantity = 0;
-        activateElements(6, batteries);
+        activateElements(3, batteries);
+        activateElements(2, batteriesUp);
+        activateElements(1, batteriesDown);
         activateElements(3, pills);
-        activateElements(3, keys);
+        activateElements(4, keys);
     }
 
     private void activateElements(int numberOfElements, GameObject[] items)
