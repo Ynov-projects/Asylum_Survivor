@@ -11,6 +11,14 @@ public class PlayerMovement : MonoBehaviour
 
     private int _numberOfCollidingItems = 0;
 
+    public static PlayerMovement Instance;
+
+    private void Awake()
+    {
+        if (Instance != null) Destroy(gameObject);
+        Instance = this;
+    }
+
     void Update()
     {
         float horizontalMovement = Input.GetAxis("Horizontal");

@@ -37,7 +37,7 @@ public class CodePanelScript : MonoBehaviour
 
     public void OnQuit()
     {
-        Cursor.visible = false;
+        GameManager.Instance.changeState(true);
         gameObject.SetActive(false);
     }
 }

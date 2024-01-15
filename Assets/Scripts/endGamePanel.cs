@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class endGamePanel : MonoBehaviour
 {
@@ -11,5 +12,10 @@ public class endGamePanel : MonoBehaviour
     public void onQuitClick()
     {
         Application.Quit();
+    }
+
+    public void onMenuClick()
+    {
+        SceneManager.LoadScene("LoadingScene");
     }
 }

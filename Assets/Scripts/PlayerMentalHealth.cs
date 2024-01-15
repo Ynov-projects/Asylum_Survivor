@@ -16,6 +16,8 @@ public class PlayerMentalHealth : MonoBehaviour
     private ChromaticAberration aberration;
     private LensDistortion distortion;
 
+    public bool isPlaying = true;
+
     [SerializeField] private Image _stressImage;
     [SerializeField] private RectTransform _stressBackground;
     [SerializeField] private Gradient _stressGradient;
@@ -47,7 +49,7 @@ public class PlayerMentalHealth : MonoBehaviour
     {
         while (true)
         {
-            if (timer > 2)
+            if (timer > 5 - PlayerPrefs.GetInt("difficulty") && isPlaying)
             {
                 // If no flashlight and no global light = 1 / else = 0
                 int light = (!GameManager.Instance.isLightOn ? 1 : 0) * (!SwitchLights.Instance.isLightOn ? 1 : 0);

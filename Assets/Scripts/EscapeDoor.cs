@@ -22,7 +22,7 @@ public class EscapeDoor : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                Cursor.visible = true;
+                GameManager.Instance.changeState(false);
                 codePanel.SetActive(true);
             }
         }
